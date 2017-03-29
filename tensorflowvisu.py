@@ -16,6 +16,7 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+from IPython.display import HTML
 plt.style.use(["ggplot", "tensorflowvisu.mplstyle"])
 #import matplotlib
 #matplotlib.use('macosx') #this is the default on mac
@@ -367,8 +368,8 @@ class MnistDataVis:
             if not self.is_paused():
                 return self._mpl_update_func()
 
-        self._animation = animation.FuncAnimation(self._mpl_figure, animate_step, int(iterations // train_data_update_freq + 1), init_func=self._mlp_init_func, interval=16, repeat=False, blit=False)
-
+        self._animation = animation.FuncAnimation(self._mpl_figure, animate_step, int(iterations // train_data_update_freq + 1), init_func=self._mlp_init_func, interval=16, repeat=False, blit=True)
+        HTML(self._animation.to_html5_video())
         if save_movie:
             mywriter = animation.FFMpegWriter(fps=24, codec='libx264', extra_args=['-pix_fmt', 'yuv420p', '-profile:v', 'high', '-tune', 'animation', '-crf', '18'])
             self._animation.save("./tensorflowvisu_video.mp4", writer=mywriter)
