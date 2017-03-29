@@ -127,9 +127,9 @@ def training_step(i, update_test_data, update_train_data):
 
 
 #to animate plots
-#datavis.animate(training_step, iterations=100+1, train_data_update_freq=10, test_data_update_freq=50, more_tests_at_start=True)
+datavis.animate(training_step, iterations=100+1, train_data_update_freq=10, test_data_update_freq=50, more_tests_at_start=True)
 
-for i in range(10000+1):
-    training_step(i, i % 50 == 0, i % 10 == 0)
+#for i in range(10000+1):
+ #   training_step(i, i % 50 == 0, i % 10 == 0)
 
 print("Test accuracy: " + str(datavis.get_max_test_accuracy()))
